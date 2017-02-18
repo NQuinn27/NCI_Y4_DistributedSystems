@@ -1,0 +1,7 @@
+module HelloNaming
+{
+  interface Hello
+  {
+    string sayHello();
+  };
+};
