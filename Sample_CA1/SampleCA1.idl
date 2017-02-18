@@ -1,0 +1,7 @@
+module SampleCA1
+{
+  interface Hello
+  {
+    string sayHello();
+  };
+};
