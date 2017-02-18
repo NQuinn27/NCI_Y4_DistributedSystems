@@ -9,16 +9,16 @@ public class HelloNamingServer{
 
 	public static void main (String args[]) {
 		try{
-			NameComponent nc[] = new NameComponent[1];
+			Properties props = new Properties(); props.put("org.omg.CORBA.ORBInitialPort", "49000");
+			ORB orb = ORB.init(args, props);
 
-	    	// create and initialize the ORB
-	   		ORB orb = ORB.init(args, null);
+			NameComponent nc[] = new NameComponent[1];
 
 			HelloServant helloRef = new HelloServant();
 
 			//connecting the servant to the orb
 			orb.connect(helloRef);
-	   		System.out.println("Orb connected." + orb);
+			System.out.println("Orb connected." + orb);
 
 			//You need to locate the naming service. The naming serivce helps you locate other objects.
 			//The CORBA orb lets you locate certain services by name. The call
@@ -29,7 +29,7 @@ public class HelloNamingServer{
 			//resolve_initial_reference. It returns a generic CORBA object. Note you have to use
 			//org.omg.CORBA.Object otherwise the compiler assumes that you mean java.lang.Object
 			org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
-	   		System.out.println("Found NameService.");
+			System.out.println("Found NameService.");
 
 			//Next you need to convert this reference into a NamingContext reference
 			//so that you can invoke the methods of the NamingContext interface.
@@ -66,7 +66,17 @@ public class HelloNamingServer{
 			NamingContext Hello4Ctx = Hello3Ctx.bind_new_context(nc);
 			System.out.println("Context 'Hello31' added to Hello3 context.");
 
-                        // wait for invocations from clients
+			nc[0] = new NameComponent("Hello3", "Context");
+
+			nc[0] = new NameComponent("Hello2", "Context");
+			NamingContext Hello2Ctx = rootCtx.bind_new_context(nc);
+			System.out.println("Context 'Hello2' added to Name Space.");
+
+			nc[0] = new NameComponent("Object2", "Object");
+			Hello2Ctx.rebind(nc, helloRef);
+			System.out.println("Object 'Object2' added to Hello2 Context.");
+
+			// wait for invocations from clients
 			orb.run();
 
 
