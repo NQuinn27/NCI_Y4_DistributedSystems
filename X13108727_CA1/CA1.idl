@@ -1,0 +1,7 @@
+module CA1
+{
+  interface Add
+  {
+    long addTwoNumbers(in long a, in long b);
+  };
+};
