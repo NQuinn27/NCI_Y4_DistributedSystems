@@ -83,6 +83,7 @@ public class CA1Server {
       Ctx3.rebind(nc, Ctx3);
       System.out.println("Object 'Object5' added to Context 3.");
 
+      //Run the orb
       orb.run();
 
     } catch (Exception e) {

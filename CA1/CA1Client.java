@@ -66,6 +66,7 @@ public class CA1Client {
         return;
       }
 
+      //Some safety checks
       int a,b;
       try {
         a = Integer.parseInt(args[0]);
@@ -80,7 +81,7 @@ public class CA1Client {
         return;
       }
 
-      //Add the numbers
+      //Invoke the Servant to add the numbers
       System.out.println("\nInvoking our object method..");
       try {
         int result = adderRef.addTwoNumbers(a, b);

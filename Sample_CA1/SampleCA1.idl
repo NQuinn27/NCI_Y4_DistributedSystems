@@ -2,6 +2,6 @@ module SampleCA1
 {
   interface Hello
   {
-    string sayHello();
+    int addTwoNumbers(int num1, int num2);
   };
 };
